@@ -20,7 +20,8 @@ int NtGlobalFlag64(void){
         	".intel_syntax noprefix;"
   		"xor rax, rax;"
     		"mov rbx, qword ptr gs:[0x60];"      
-		"mov eax, dword ptr [rbx + 0xbc];"  
+		"mov eax, dword ptr [rbx + 0xbc];" 
+		"and al, 0x70;"
      );
      
 }

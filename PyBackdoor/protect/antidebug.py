@@ -1,4 +1,4 @@
-
+"""
 Anti disassembly with python ..
 Works on:
 	-> http://www.pydev.org/
